@@ -69,7 +69,17 @@ export default function JobDetailPage() {
   }, [job?._id]);
 
   const applyForJob = async () => {
-    if (!job.isOpen || hasApplied) return;
+    // Check if job is closed first
+    if (!job.isOpen) {
+      alert('This job posting has been closed and is no longer accepting applications.');
+      return;
+    }
+
+    // Check if already applied
+    if (hasApplied) {
+      alert('You have already applied for this job.');
+      return;
+    }
 
     try {
       // First save the application to database
@@ -174,10 +184,23 @@ export default function JobDetailPage() {
 
         <button
           onClick={applyForJob}
-          className={`btn btn-primary w-full mt-6 ${hasApplied ? 'btn-disabled' : ''}`}
-          disabled={hasApplied}
+          className={`btn w-full mt-6 ${
+            !job.isOpen 
+              ? 'bg-gray-500 cursor-not-allowed'
+              : hasApplied 
+                ? 'btn-disabled' 
+                : 'btn-primary'
+          }`}
+          disabled={!job.isOpen || hasApplied}
         >
-          {hasApplied ? 'You have already applied for this job' : 'Apply Now'}
+          <span className={`${!job.isOpen ? 'text-red-500 font-medium' : 'text-white'}`}>
+            {!job.isOpen 
+              ? 'This job posting is closed' 
+              : hasApplied 
+                ? 'You have already applied for this job' 
+                : 'Apply Now'
+            }
+          </span>
         </button>
       </div>
     </div>

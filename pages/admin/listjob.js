@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import AdminProtected from '../../components/Auth/AdminProtected';
+import { FaPlus } from "react-icons/fa";
 
 export async function getServerSideProps({ req, res }) {
   // Check if the token exists in cookies
@@ -21,7 +23,7 @@ export async function getServerSideProps({ req, res }) {
   };
 }
 
-export default function AdminJobListPage() {
+function AdminJobListPage() {
   const router = useRouter();
 
   const [jobs, setJobs] = useState([]);
@@ -108,9 +110,9 @@ export default function AdminJobListPage() {
   return (
     <div className="min-h-screen p-6 bg-gray-100">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">Job Listings</h1>
-        <button onClick={handleAddJob} className="btn btn-primary">
-          Add Job
+        <h1 className="text-3xl text-black font-bold">Job Listings</h1>
+        <button onClick={handleAddJob} className="btn gap-2 text-white flex items-center btn-primary">
+          Add Job <FaPlus />
         </button>
       </div>
 
@@ -118,7 +120,7 @@ export default function AdminJobListPage() {
       <div className="flex justify-center items-center py-5">
         <div className="join">
           <input
-            className="join-item btn"
+            className="join-item text-white btn"
             type="radio"
             name="options"
             id="open"
@@ -127,7 +129,7 @@ export default function AdminJobListPage() {
             onChange={() => setActiveTab("open")}
           />
           <input
-            className="join-item btn"
+            className="join-item text-white btn"
             type="radio"
             name="options"
             id="closed"
@@ -136,7 +138,7 @@ export default function AdminJobListPage() {
             onChange={() => setActiveTab("closed")}
           />
           <input
-            className="join-item btn"
+            className="join-item text-white btn"
             type="radio"
             name="options"
             id="all"
@@ -183,5 +185,13 @@ export default function AdminJobListPage() {
         )}
       </div>
     </div>
+  );
+}
+
+export default function ProtectedListJobPage() {
+  return (
+    <AdminProtected>
+      <AdminJobListPage />
+    </AdminProtected>
   );
 }

@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import AdminProtected from '../../components/Auth/AdminProtected';
+import { FaPencilAlt } from "react-icons/fa";
 
-export default function PostJobPage(req, res) {
+const PostJobPage = () => {
   const router = useRouter();
   const { id } = router.query;
   const [jobDetails, setJobDetails] = useState({
@@ -90,7 +92,16 @@ export default function PostJobPage(req, res) {
 
   return (
     <div className="p-8 max-w-3xl mx-auto">
-      <h1 className="text-2xl font-bold mb-6">{isEditing ? "Edit Job" : "Post a New Job"}</h1>
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-2xl font-bold">{isEditing ? "Edit Job" : "Post New Job"}</h1>
+        <button
+          onClick={() => router.push('/admin/listjob')}
+          className="bg-primary hover:bg-primary-dark text-white font-medium py-2 px-4 rounded transition-colors"
+        >
+          <p className="flex items-center gap-2">Edit Jobs <FaPencilAlt /></p>
+        </button>
+      </div>
+
       {error && <p className="text-red-500 mb-4">{error}</p>}
 
       <form onSubmit={handleSubmit} className="space-y-4">
@@ -254,5 +265,13 @@ export default function PostJobPage(req, res) {
         </button>
       </form>
     </div>
+  );
+}
+
+export default function ProtectedPostJob() {
+  return (
+    <AdminProtected>
+      <PostJobPage />
+    </AdminProtected>
   );
 }

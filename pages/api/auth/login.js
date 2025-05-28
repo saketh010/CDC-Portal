@@ -11,16 +11,17 @@ export default async function handler(req, res) {
   if (req.method === 'POST') {
     const { username, password } = req.body;
 
-    if (!username || !password) {
-      return res.status(400).json({ message: 'Username and password are required' });
-    }
-
     try {
       const user = await User.findOne({ username });
+
       if (!user) {
-        return res.status(401).json({ message: 'Invalid username' });
+        return res.status(401).json({ message: 'Invalid credentials' });
       }
 
+      // Check if username matches admin pattern (admin + 3 digits)
+      const isAdmin = /^admin\d{3}$/.test(username);
+      
+      // Verify password
       const isMatch = await bcrypt.compare(password, user.password);
 
       if (!isMatch) {
@@ -39,11 +40,13 @@ export default async function handler(req, res) {
         path: '/',
       }));
       
-      // For other users, return to the home page
-      res.status(200).json({ message: 'Login successful', username: user.username });
+      return res.status(200).json({
+        message: 'Login successful',
+        isAdmin: isAdmin
+      });
     } catch (error) {
       console.error('Login error:', error);
-      res.status(500).json({ message: 'Internal Server Error' });
+      return res.status(500).json({ message: 'Server error' });
     }
   } else {
     res.setHeader('Allow', ['POST']);

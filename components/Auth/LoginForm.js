@@ -11,8 +11,6 @@ export default function LoginForm({ lf }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    setError('');
-
     try {
       const res = await fetch('/api/auth/login', {
         method: 'POST',
@@ -25,18 +23,20 @@ export default function LoginForm({ lf }) {
       const data = await res.json();
 
       if (res.status === 200) {
-        localStorage.setItem('username', data.username);
-        if(username === 'admin') {
+        localStorage.setItem('username', username);
+        localStorage.setItem('isAdmin', data.isAdmin);
+
+        if (data.isAdmin) {
           router.push('/admin/listjob');
         } else {
-        router.push('/home');
+          router.push('/home');
         }
       } else {
         setError(data.message);
       }
     } catch (err) {
-      console.error('An unexpected error occurred:', err);
-      setError('Something went wrong. Please try again later.');
+      console.error('Login error:', err);
+      setError('Something went wrong. Please try again.');
     }
   };
 
