@@ -93,7 +93,7 @@ const PostJobPage = () => {
   return (
     <div className="p-8 max-w-3xl mx-auto">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">{isEditing ? "Edit Job" : "Post New Job"}</h1>
+        <h1 className="text-2xl text-black font-bold">{isEditing ? "Edit Job" : "Post New Job"}</h1>
         <button
           onClick={() => router.push('/admin/listjob')}
           className="bg-primary hover:bg-primary-dark text-white font-medium py-2 px-4 rounded transition-colors"
@@ -107,7 +107,7 @@ const PostJobPage = () => {
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Company Name */}
         <div>
-          <label className="block font-medium">Company Name</label>
+          <label className="block text-black font-medium">Company Name</label>
           <input
             type="text"
             name="company"
@@ -121,7 +121,7 @@ const PostJobPage = () => {
 
         {/* About */}
         <div>
-          <label className="block font-medium">About the Company</label>
+          <label className="block text-black font-medium">About the Company</label>
           <textarea
             name="about"
             value={jobDetails.about}
@@ -134,7 +134,7 @@ const PostJobPage = () => {
 
         {/* Job Title */}
         <div>
-          <label className="block font-medium">Job Title</label>
+          <label className="block text-black font-medium">Job Title</label>
           <input
             type="text"
             name="title"
@@ -148,7 +148,7 @@ const PostJobPage = () => {
 
         {/* Job Description */}
         <div>
-          <label className="block font-medium">Job Description</label>
+          <label className="block text-black font-medium">Job Description</label>
           <textarea
             name="description"
             value={jobDetails.description}
@@ -161,7 +161,7 @@ const PostJobPage = () => {
 
         {/* CGPA Requirement */}
         <div>
-          <label className="block font-medium">CGPA Requirement</label>
+          <label className="block text-black font-medium">CGPA Requirement</label>
           <input
             type="number"
             step="0.1"
@@ -176,7 +176,7 @@ const PostJobPage = () => {
 
         {/* Stipend */}
         <div>
-          <label className="block font-medium">Stipend</label>
+          <label className="block text-black font-medium">Stipend</label>
           <input
             type="number"
             name="stipend"
@@ -190,7 +190,7 @@ const PostJobPage = () => {
 
         {/* Online Assessment Date */}
         <div>
-          <label className="block font-medium">Online Assessment Date</label>
+          <label className="block text-black font-medium">Online Assessment Date</label>
           <input
             type="date"
             name="oaDate"
@@ -203,7 +203,7 @@ const PostJobPage = () => {
 
         {/* Interview Date */}
         <div>
-          <label className="block font-medium">Interview Date</label>
+          <label className="block text-black font-medium">Interview Date</label>
           <input
             type="date"
             name="interviewDate"
@@ -216,7 +216,7 @@ const PostJobPage = () => {
 
         {/* Location */}
         <div>
-          <label className="block font-medium">Location</label>
+          <label className="block text-black font-medium">Location</label>
           <input
             type="text"
             name="location"
@@ -230,7 +230,7 @@ const PostJobPage = () => {
 
         {/* Duration */}
         <div>
-          <label className="block font-medium">Duration</label>
+          <label className="block text-black font-medium">Duration</label>
           <input
             type="text"
             name="duration"
@@ -244,7 +244,7 @@ const PostJobPage = () => {
 
         {/* Image Link */}
         <div>
-          <label className="block font-medium">Image Link</label>
+          <label className="block text-black font-medium">Image Link</label>
           <input
             type="url"
             name="imageLink"
