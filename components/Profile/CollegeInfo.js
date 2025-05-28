@@ -176,11 +176,11 @@ const CollegeInfo = ({ userProfile }) => {
             </div>
 
             {/* Submit Button */}
-            <div className="col-span-1 md:col-span-3 mt-4">
+            <div className="col-span-1 flex justify-center md:col-span-3 mt-4">
                 <button
                     type="submit"
                     onClick={handleSubmit}
-                    className="btn btn-primary w-full"
+                    className="btn btn-primary px-10 max-w-xs"
                 >
                     Save Changes
                 </button>

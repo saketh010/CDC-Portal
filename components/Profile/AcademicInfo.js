@@ -69,7 +69,7 @@ const AcademicInfo = ({ userProfile }) => {
 
     return (
         <div className="p-6 bg-white rounded-lg shadow-md">
-            <h2 className="text-xl font-bold mb-4">Academic Information</h2>
+            <h2 className="text-2xl text-gray-800 font-bold mb-4">Academic Information</h2>
 
             <form onSubmit={handleSubmit}>
                 {/* Line 1: 10th Details */}
@@ -197,10 +197,10 @@ const AcademicInfo = ({ userProfile }) => {
                     ))}
                 </div>
 
-                <div className="col-span-1 md:col-span-3 mt-4">
+                <div className="col-span-1 md:col-span-3 flex justify-center mt-4">
                     <button
                         type="submit"
-                        className="btn btn-primary w-full"
+                        className="btn btn-primary px-10 max-w-xs"
                     >
                         Save Changes
                     </button>

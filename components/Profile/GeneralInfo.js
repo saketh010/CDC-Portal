@@ -88,7 +88,7 @@ const handleInputChange = (e) => {
 
   return (
     <div className="p-8 bg-gray-50 rounded-lg shadow-lg border border-gray-200">
-      <h2 className="text-2xl font-semibold mb-6 text-gray-800">General Information</h2>
+      <h2 className="text-2xl font-bold mb-6 text-gray-800">General Information</h2>
       <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* First Name, Middle Name, Last Name */}
         <input
@@ -205,11 +205,10 @@ const handleInputChange = (e) => {
         />
 
         {/* Submit Button */}
-        <div className="col-span-1 md:col-span-3 mt-4">
+        <div className="col-span-1 md:col-span-3 mt-4 flex justify-center">
           <button
             type="submit"
-            className="btn btn-primary w-full"
-          >
+            className="btn btn-primary px-10 max-w-xs">
             Save Changes
           </button>
         </div>

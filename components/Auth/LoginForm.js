@@ -1,12 +1,18 @@
 // components/Auth/LoginForm.js
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 export default function LoginForm({ lf }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -64,7 +70,7 @@ export default function LoginForm({ lf }) {
           />
         </label>
 
-        <label className="input input-bordered flex items-center gap-2">
+        <label className="input input-bordered flex items-center gap-2 relative">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 16 16"
@@ -76,13 +82,20 @@ export default function LoginForm({ lf }) {
               clipRule="evenodd" />
           </svg>
           <input
-            type="password"
-            className="grow p-3 text-lg" // Increased padding and text size
+            type={showPassword ? "text" : "password"}
+            className="grow p-3 text-lg pr-10"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
+          <button
+            type="button"
+            className="absolute right-3 top-1/2 transform -translate-y-1/2"
+            onClick={togglePasswordVisibility}
+          >
+            {showPassword ? <FaEyeSlash className="h-5 w-5 text-gray-500" /> : <FaEye className="h-5 w-5 text-gray-500" />}
+          </button>
         </label>
 
         <button type="submit" className="btn btn-primary w-full text-lg p-3">Login</button>
