@@ -1,0 +1,7 @@
+/* styles/custom.css */
+.btn-important {
+    @apply bg-important text-white border-transparent; /* Customize as needed */
+  }
+.btn-important:hover {
+    @apply bg-light; /* Change this to the desired hover color */
+}
