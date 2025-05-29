@@ -32,9 +32,12 @@ export default function Header() {
         </a>
       </div>
       <div className="flex-none gap-2">
-        <div className="form-control">
+
+        {/* search to be implemented later */}
+        {/* <div className="form-control">
           <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
-        </div>
+        </div> */}
+
         <div className="dropdown dropdown-end">
           <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
             <PiStudentBold size={30} />
