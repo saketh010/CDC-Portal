@@ -151,32 +151,32 @@ export default function JobDetailPage() {
           <table className="table-auto w-full text-left border-collapse border border-gray-200">
             <tbody>
               <tr>
-                <th className="border border-gray-200 px-4 py-2 bg-gray-100">Employment Type</th>
-                <td className="border border-gray-200 px-4 py-2">{job.isOpen ? "Open" : "Closed"}</td>
+                <th className="border text-black border-gray-200 px-4 py-2 bg-gray-100">Employment Type</th>
+                <td className="border text-black border-gray-200 px-4 py-2">{job.isOpen ? "Open" : "Closed"}</td>
               </tr>
               <tr>
-                <th className="border border-gray-200 px-4 py-2 bg-gray-100">CGPA Requirement</th>
-                <td className="border border-gray-200 px-4 py-2">{job.CGPA}</td>
+                <th className="border text-black border-gray-200 px-4 py-2 bg-gray-100">CGPA Requirement</th>
+                <td className="border text-black border-gray-200 px-4 py-2">{job.CGPA}</td>
               </tr>
               <tr>
-                <th className="border border-gray-200 px-4 py-2 bg-gray-100">Stipend</th>
-                <td className="border border-gray-200 px-4 py-2">{job.stipend || "N/A"}</td>
+                <th className="border text-black border-gray-200 px-4 py-2 bg-gray-100">Stipend</th>
+                <td className="border text-black border-gray-200 px-4 py-2">{job.stipend || "N/A"}</td>
               </tr>
               <tr>
-                <th className="border border-gray-200 px-4 py-2 bg-gray-100">Location</th>
-                <td className="border border-gray-200 px-4 py-2">{job.location}</td>
+                <th className="border text-black border-gray-200 px-4 py-2 bg-gray-100">Location</th>
+                <td className="border text-black border-gray-200 px-4 py-2">{job.location}</td>
               </tr>
               <tr>
-                <th className="border border-gray-200 px-4 py-2 bg-gray-100">Duration</th>
-                <td className="border border-gray-200 px-4 py-2">{job.duration}</td>
+                <th className="border text-black border-gray-200 px-4 py-2 bg-gray-100">Duration</th>
+                <td className="border text-black border-gray-200 px-4 py-2">{job.duration}</td>
               </tr>
               <tr>
-                <th className="border border-gray-200 px-4 py-2 bg-gray-100">OA Date</th>
-                <td className="border border-gray-200 px-4 py-2">{new Date(job.oaDate).toLocaleDateString()}</td>
+                <th className="border text-black border-gray-200 px-4 py-2 bg-gray-100">OA Date</th>
+                <td className="border text-black border-gray-200 px-4 py-2">{new Date(job.oaDate).toLocaleDateString()}</td>
               </tr>
               <tr>
-                <th className="border border-gray-200 px-4 py-2 bg-gray-100">Interview Date</th>
-                <td className="border border-gray-200 px-4 py-2">{new Date(job.interviewDate).toLocaleDateString()}</td>
+                <th className="border text-black border-gray-200 px-4 py-2 bg-gray-100">Interview Date</th>
+                <td className="border text-black border-gray-200 px-4 py-2">{new Date(job.interviewDate).toLocaleDateString()}</td>
               </tr>
             </tbody>
           </table>
@@ -193,7 +193,13 @@ export default function JobDetailPage() {
           }`}
           disabled={!job.isOpen || hasApplied}
         >
-          <span className={`${!job.isOpen ? 'text-red-500 font-medium' : 'text-white'}`}>
+          <span className={`${
+            !job.isOpen 
+              ? 'text-red-500 font-medium' 
+              : hasApplied 
+                ? 'text-red-500 font-bold'  // to make "already applied" text red
+                : 'text-white font-bold'
+          }`}>
             {!job.isOpen 
               ? 'This job posting is closed' 
               : hasApplied 

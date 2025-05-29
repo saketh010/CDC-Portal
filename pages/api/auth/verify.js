@@ -13,8 +13,7 @@ export default function handler(req, res) {
         if (!decoded) {
             return res.status(401).json({ message: 'Invalid token' });
         }
-
-        // Respond with a success message
+        
         return res.status(200).json({ message: 'Token is valid' });
     } else {
         res.setHeader('Allow', ['POST']);

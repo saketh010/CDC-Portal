@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import Link from 'next/link';
 
 export default function LoginForm({ lf }) {
   const [username, setUsername] = useState('');
@@ -98,7 +99,15 @@ export default function LoginForm({ lf }) {
           </button>
         </label>
 
-        <button type="submit" className="btn btn-primary w-full text-lg p-3">Login</button>
+        <div className="flex justify-end">
+          <Link href="/forgot-password" className="text-primary hover:underline">
+            Forgot Password?
+          </Link>
+        </div>
+
+        <button type="submit" className="btn btn-primary w-full text-lg p-3">
+          Login
+        </button>
         {error && <p className="text-red-500 text-center mt-2">{error}</p>}
       </form>
     </div>

@@ -49,11 +49,26 @@ const UserSchema = new mongoose.Schema({
       'General',
       'Other Backward Class (OBC)',
       'Scheduled Caste (SC)',
-      'Scheduled Tribes (ST)',
+      'Scheduled Tribe (ST)',
       'Economically Weaker Section (EWS)',
-      'Person with Disability (PWD)',
     ],
     required: true,
+  },
+  resetPasswordOTP: {
+    type: String,
+    default: null
+  },
+  resetPasswordOTPExpiry: {
+    type: Date,
+    default: null
+  },
+  otpAttempts: {
+    type: Number,
+    default: 0
+  },
+  lastOtpAttempt: {
+    type: Date,
+    default: null
   },
   dob: {
     type: String,
