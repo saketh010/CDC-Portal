@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-
+import PageHead from '../../components/SEO/PageHead';
 export async function getServerSideProps({ req, res }) {
   // Check if the token exists in cookies
   const token = req.cookies.token;
@@ -127,6 +127,8 @@ export default function JobDetailPage() {
   if (error) return <p>Error: {error}</p>;
 
   return (
+    <>
+    <PageHead title="Job Details" description="Browse job details for campus placements including job roles, stipend, CGPA criteria, and important dates." />
     <div className="container mx-auto px-6 py-10 bg-gray-100 min-h-screen">
       <div className="bg-white shadow-lg rounded-lg p-8">
         <div className="flex items-start mb-6">
@@ -210,5 +212,6 @@ export default function JobDetailPage() {
         </button>
       </div>
     </div>
+    </>
   );
 }

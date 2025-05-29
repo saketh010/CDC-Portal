@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import PageHead from '../components/SEO/PageHead';
 
 export async function getServerSideProps({ req, res }) {
     // Check if the token exists in cookies
@@ -90,6 +91,8 @@ export default function MyApplicationsPage() {
   };
 
   return (
+    <>
+        <PageHead title="My Applications" description="Review your job applications submitted through the SVNIT Career Portal, including status updates and deadlines." />
     <div>
       {loading ? (
         <p>Loading your applications...</p>
@@ -123,5 +126,6 @@ export default function MyApplicationsPage() {
         </div>
       )}
     </div>
+    </>
   );
 }

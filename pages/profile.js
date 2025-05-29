@@ -4,6 +4,7 @@ import GeneralInfo from '../components/Profile/GeneralInfo';
 import CollegeInfo from '../components/Profile/CollegeInfo';
 import AcademicInfo from '../components/Profile/AcademicInfo';
 import ChangePassword from '../components/Profile/ChangePassword';
+import PageHead from '../components/SEO/PageHead';
 
 export async function getServerSideProps({ req, res }) {
   // Check if the token exists in cookies
@@ -76,6 +77,8 @@ const Profile = () => {
   };
 
   return (
+    <>
+        <PageHead title="Student Profile" description="View and update your student profile with academic details, resume, skills, and application history." />
     <div className="container mx-auto p-6 bg-gray-100 rounded-lg shadow-lg">
       {errorMessage && <p className="text-red-500">{errorMessage}</p>}
   
@@ -140,6 +143,7 @@ const Profile = () => {
 
       </div>
     </div>
+    </>
   );
 };
 

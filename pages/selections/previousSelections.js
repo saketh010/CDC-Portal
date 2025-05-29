@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import PageHead from '../../components/SEO/PageHead';
 
 export default function PreviousSelectionsPage() {
   const [selections, setSelections] = useState([]);
@@ -42,6 +43,8 @@ export default function PreviousSelectionsPage() {
   };
 
   return (
+    <>
+        <PageHead title="Selections" description="Explore profiles of students previously selected for internships, full-time jobs, and other professional opportunities." />
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl flex justify-center text-black font-bold mb-8">Previous Selections</h1>
       
@@ -117,5 +120,6 @@ export default function PreviousSelectionsPage() {
         </table>
       </div>
     </div>
+    </>
   );
 }
