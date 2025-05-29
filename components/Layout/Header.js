@@ -8,31 +8,6 @@ import { BsFillBriefcaseFill } from "react-icons/bs";
 import Logout from '../Auth/Logout';
 import { useEffect, useState } from 'react';
 
-//Dharmil code - modified (7-10-24)
-
-// export default function Header() {
-//   return (
-//     <header className={styles.header}>
-//       <div className={styles.logo}>
-//         <Link href="/">
-//           {/* Replace with your logo image if available */}
-//           CDC Portal
-//         </Link>
-//       </div>
-//       <nav>
-//         <ul className={styles.navList}>
-//           <li>
-//             <Link href="/profile">
-//               Profile
-//             </Link>
-//           </li>
-//           {/* Add more navigation links as needed */}
-//         </ul>
-//       </nav>
-//     </header>
-//   );
-// }
-
 //saketh code (updated 7-10-24)
 export default function Header() {
   const [isAdmin, setIsAdmin] = useState(false);
@@ -52,7 +27,8 @@ export default function Header() {
               <img src="https://i.pinimg.com/736x/90/61/44/906144b6d22dfbf049d892f62d94a705.jpg" />
             </div>
           </div>
-          CDC-SVNIT
+          <span className="hidden md:inline">Career Development Cell - SVNIT</span>
+          <span className="md:hidden">CDC-SVNIT</span>
         </a>
       </div>
       <div className="flex-none gap-2">
@@ -80,7 +56,7 @@ export default function Header() {
             )}
             
             <li>
-              <a href='/selection' className="justify-between">Previous Selection
+              <a href='/selections/previousSelections' className="justify-between">Previous Selection
                 <span className="badge"><BsFillBriefcaseFill size={20} /></span>
               </a>
             </li>
