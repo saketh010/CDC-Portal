@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }) {
 
     // Redirect admin to admin dashboard if trying to access student routes
     if (isAdmin && path === '/home') {
-      router.push('/admin/dashboard');
+      router.push('/admin/listjob');
     }
 
     // Redirect students away from admin routes

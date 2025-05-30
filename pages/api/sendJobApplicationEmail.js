@@ -1,5 +1,6 @@
 import nodemailer from "nodemailer";
 import User from "../../models/User";
+import { getJobApplicationEmailTemplate } from "../../utils/JobApplicationEmailTemplate";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -19,44 +20,22 @@ export default async function handler(req, res) {
   }
 
   try {
-    // Nodemailer transporter setup
     const transporter = nodemailer.createTransport({
       service: "Gmail",
       auth: {
-        user: process.env.EMAIL_USER, // Your email address
-        pass: process.env.EMAIL_PASS, // Your email password or app password
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
       },
     });
 
-    // Email content
     const mailOptions = {
       from: `"Career Development Cell" <${process.env.EMAIL_USER}>`,
       to: email,
       subject: `Job Application Confirmation: ${job.title}`,
-      html: `
-        <p>Dear Student,</p>
-        <p>You have successfully applied for the job <strong>${
-          job.title
-        }</strong> at <strong>${job.company}</strong>.</p>
-        <p>Here are the details of the job you applied for:</p>
-        <ul>
-          <li><strong>Location:</strong> ${job.location}</li>
-          <li><strong>Stipend:</strong> ${job.stipend || "N/A"}</li>
-          <li><strong>Duration:</strong> ${job.duration}</li>
-          <li><strong>OA Date:</strong> ${new Date(
-            job.oaDate
-          ).toLocaleDateString()}</li>
-          <li><strong>Interview Date:</strong> ${new Date(
-            job.interviewDate
-          ).toLocaleDateString()}</li>
-        </ul>
-        <p>Best regards,<br/>Career Development Cell</p>
-      `,
+      html: getJobApplicationEmailTemplate(job)
     };
 
-    // Send email
     await transporter.sendMail(mailOptions);
-
     res.status(200).json({ message: "Email sent successfully!" });
   } catch (error) {
     console.error("Error sending email:", error);

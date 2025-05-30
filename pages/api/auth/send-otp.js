@@ -1,5 +1,6 @@
 import { generateOTP } from '../../../utils/otp';
 import { sendEmail } from '../../../utils/nodemailer';
+import { getOTPEmailTemplate } from '../../../utils/emailTemplates';
 import connectToDatabase from '../../../lib/mongodb';
 import User from '../../../models/User';
 
@@ -22,7 +23,7 @@ export default async function handler(req, res) {
     }
 
     const otp = generateOTP();
-    const otpExpiry = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes
+    const otpExpiry = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes to match template
 
     // Debug logs
     console.log('Generated OTP:', otp);
@@ -43,21 +44,11 @@ export default async function handler(req, res) {
     // Verify update
     console.log('Update result:', updateResult);
 
-    // Double check the stored OTP
-    const verifyUser = await User.findOne({ email: email.trim() });
-    console.log('Stored OTP:', verifyUser.resetPasswordOTP);
-
-    // Send email
+    // Send email using the template
     await sendEmail({
       to: email,
-      subject: 'Password Reset OTP',
-      html: `
-        <div style="font-family: Arial, sans-serif;">
-          <h2>Password Reset Request</h2>
-          <p>Your OTP for password reset is: <strong>${otp}</strong></p>
-          <p>This OTP will expire in 10 minutes.</p>
-        </div>
-      `
+      subject: 'Password Reset',
+      html: getOTPEmailTemplate(otp)
     });
 
     res.status(200).json({ message: 'OTP sent successfully' });
