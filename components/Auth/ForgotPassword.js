@@ -144,8 +144,10 @@ export default function ForgotPassword() {
               className="input input-bordered w-full"
               required
             />
-            <button type="submit" className="btn btn-primary w-full" disabled={loading}>
-              {loading ? 'Sending...' : 'Send OTP'}
+            <button type="submit" className="btn btn-primary w-full font-semibold" disabled={loading}>
+              <span className="text-black">
+                {loading ? 'Sending...' : 'Send OTP'}
+              </span>
             </button>
           </form>
         )}
@@ -167,8 +169,10 @@ export default function ForgotPassword() {
               maxLength={6}
               required
             />
-            <button type="submit" className="btn btn-primary w-full" disabled={loading}>
-              {loading ? 'Verifying...' : 'Verify OTP'}
+            <button type="submit" className="btn btn-primary w-full font-semibold" disabled={loading}>
+              <span className="text-black">
+                {loading ? 'Verifying...' : 'Verify OTP'}
+              </span>
             </button>
           </form>
         )}
@@ -240,10 +244,12 @@ export default function ForgotPassword() {
             </div>
             <button 
               type="submit" 
-              className="btn btn-primary w-full" 
+              className="btn btn-primary w-full font-semibold" 
               disabled={loading || !Object.values(passwordChecks).every(Boolean)}
             >
-              {loading ? 'Resetting...' : 'Reset Password'}
+              <span className="text-black">
+                {loading ? 'Resetting...' : 'Reset Password'}
+              </span>
             </button>
           </form>
         )}
