@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-
+// header with nothing but logo and name of the website
 const ForgotPasswordHeader = () => {
   return (
     <div className="navbar bg-base-100 shadow-md">

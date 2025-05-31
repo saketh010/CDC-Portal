@@ -13,6 +13,7 @@ export default function Layout({ children }) {
   const path = router.pathname;
   const isLoginPage = path === '/';
   const isForgotPasswordPage = path === '/forgot-password';
+  const isTestUserPage = path === '/test-user';
 
   useEffect(() => {
     const username = localStorage.getItem('username');
@@ -23,7 +24,11 @@ export default function Layout({ children }) {
   if (!isLoginPage) {
     if (isForgotPasswordPage) {
       HeaderComponent = <ForgotPasswordHeader />;
-    } else {
+    } 
+    else if(isTestUserPage) {
+      HeaderComponent = <ForgotPasswordHeader />;
+    }
+    else {
       HeaderComponent = isAdmin ? <AdminHeader /> : <Header />;
     }
   }

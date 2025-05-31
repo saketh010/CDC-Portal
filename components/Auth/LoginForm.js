@@ -98,13 +98,14 @@ export default function LoginForm({ lf }) {
             {showPassword ? <FaEyeSlash className="h-5 w-5 text-gray-500" /> : <FaEye className="h-5 w-5 text-gray-500" />}
           </button>
         </label>
-
-        <div className="flex justify-end">
+        <div className="flex justify-between">
+          <Link href="/test-user" className="text-primary hover:underline">
+            Test User ?
+          </Link>
           <Link href="/forgot-password" className="text-primary hover:underline">
             Forgot Password?
           </Link>
         </div>
-
         <button type="submit" className="btn btn-primary w-full text-lg p-3">
           Login
         </button>
