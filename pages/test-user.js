@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import PageHead from '../components/SEO/PageHead';
 
@@ -7,7 +7,29 @@ export default function TestUserPage() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [emailSent, setEmailSent] = useState(false);
+  const [countdown, setCountdown] = useState(5);
   const router = useRouter();
+
+  useEffect(() => {
+    let timer;
+
+    if (emailSent) {
+      timer = setInterval(() => {
+        setCountdown((prev) => {
+          if (prev <= 1) {
+            clearInterval(timer);
+            router.push('/');
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+    } else {
+      setCountdown(5); // reset countdown if emailSent is false
+    }
+
+    return () => clearInterval(timer);
+  }, [emailSent, router]);
 
   const handleCreateUser = async (e) => {
     e.preventDefault();
@@ -61,7 +83,7 @@ export default function TestUserPage() {
 
             {emailSent && (
               <p className="text-green-600 text-center mt-4">
-                Email sent! Redirect to login?{' '}
+                Email sent! Redirecting to login in {countdown} second{countdown !== 1 ? 's' : ''}.{' '}
                 <button
                   className="text-blue-600 underline"
                   onClick={() => router.push('/')}
