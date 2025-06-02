@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { FaEye, FaEyeSlash, FaCheck, FaTimes } from "react-icons/fa";
 
@@ -11,6 +11,7 @@ export default function ForgotPassword() {
   const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [cooldown, setCooldown] = useState(0);
   const [passwordChecks, setPasswordChecks] = useState({
     length: false,
     uppercase: false,
@@ -19,6 +20,22 @@ export default function ForgotPassword() {
     special: false
   });
   const router = useRouter();
+
+  useEffect(() => {
+    let timer;
+    if (cooldown > 0) {
+      timer = setInterval(() => {
+        setCooldown(prev => {
+          if (prev <= 1) {
+            clearInterval(timer);
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+    }
+    return () => clearInterval(timer);
+  }, [cooldown]);
 
   const handleSendOTP = async (e) => {
     e.preventDefault();
@@ -35,6 +52,13 @@ export default function ForgotPassword() {
       if (res.ok) {
         setSuccess('OTP sent to your email');
         setStep(2);
+      } else if (res.status === 429) {
+        if (data.remainingTime) {
+          setCooldown(data.remainingTime);
+          setError(`Please wait ${data.remainingTime} seconds before requesting another OTP`);
+        } else {
+          setError(data.message);
+        }
       } else {
         setError(data.message);
       }
@@ -144,9 +168,13 @@ export default function ForgotPassword() {
               className="input input-bordered w-full"
               required
             />
-            <button type="submit" className="btn btn-primary w-full font-semibold" disabled={loading}>
+            <button 
+              type="submit" 
+              className="btn btn-primary w-full font-semibold" 
+              disabled={loading || cooldown > 0}
+            >
               <span className="text-black">
-                {loading ? 'Sending...' : 'Send OTP'}
+                {loading ? 'Sending...' : cooldown > 0 ? `Wait ${cooldown}s` : 'Send OTP'}
               </span>
             </button>
           </form>

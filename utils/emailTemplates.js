@@ -1,4 +1,13 @@
 export const getOTPEmailTemplate = (otp, attemptsLeft) => {
+  let attemptsColor;
+  if (attemptsLeft <= 3) {
+    attemptsColor = '#dc2626';
+  } else if (attemptsLeft <= 6) {
+    attemptsColor = '#d97706';
+  } else {
+    attemptsColor = '#059669';
+  }
+
   return `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 40px 20px; background-color: #ffffff; border-radius: 10px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
       <h1 style="text-align: center; color: #333333; font-size: 32px; margin-bottom: 40px;">Password Reset</h1>
@@ -11,7 +20,11 @@ export const getOTPEmailTemplate = (otp, attemptsLeft) => {
         </div>
         
         <p style="color: #666666; font-size: 16px; margin-top: 20px;">
-          Valid for 15 minutes only
+          Valid for 10 minutes only
+        </p>
+        
+        <p style="color: ${attemptsColor}; font-size: 16px; margin-top: 10px; font-weight: 500;">
+          You have ${attemptsLeft} attempts remaining today
         </p>
       </div>
       

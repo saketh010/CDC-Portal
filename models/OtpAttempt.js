@@ -18,6 +18,10 @@ const otpAttemptSchema = new mongoose.Schema({
     type: Date,
     required: true
   },
+  lastAttempt: {
+    type: Date,
+    default: Date.now
+  },
   resetAt: {
     type: Date,
     default: function() {
@@ -28,8 +32,8 @@ const otpAttemptSchema = new mongoose.Schema({
   }
 }, { timestamps: true });
 
-// Add compound index for faster queries
 otpAttemptSchema.index({ email: 1, used: 1, expiresAt: 1 });
+otpAttemptSchema.index({ email: 1, lastAttempt: 1 });
 
 const OtpAttempt = mongoose.models.OtpAttempt || mongoose.model('OtpAttempt', otpAttemptSchema);
 export default OtpAttempt;
