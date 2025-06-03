@@ -51,11 +51,13 @@ export default async function handler(req, res) {
       const now = new Date();
       const lastReset = new Date(dailyAttempts.lastReset);
       
-      if (now.getDate() !== lastReset.getDate() || 
-          now.getMonth() !== lastReset.getMonth() || 
-          now.getFullYear() !== lastReset.getFullYear()) {
+      // Set both dates to midnight for proper comparison
+      const nowMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      const lastResetMidnight = new Date(lastReset.getFullYear(), lastReset.getMonth(), lastReset.getDate());
+      
+      if (nowMidnight.getTime() > lastResetMidnight.getTime()) {
         dailyAttempts.attemptsLeft = 10;
-        dailyAttempts.lastReset = now;
+        dailyAttempts.lastReset = nowMidnight;
       }
     }
 
