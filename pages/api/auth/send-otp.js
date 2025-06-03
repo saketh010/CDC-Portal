@@ -47,11 +47,9 @@ export default async function handler(req, res) {
     if (!dailyAttempts) {
       dailyAttempts = new DailyAttempts({ email: email.trim() });
     } else {
-      // Check if we need to reset attempts (new day)
       const now = new Date();
       const lastReset = new Date(dailyAttempts.lastReset);
       
-      // Set both dates to midnight for proper comparison
       const nowMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate());
       const lastResetMidnight = new Date(lastReset.getFullYear(), lastReset.getMonth(), lastReset.getDate());
       

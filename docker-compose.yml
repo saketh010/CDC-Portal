@@ -9,20 +9,17 @@ services:
       - "3000:3000"
     env_file:
       - .env.local
-    depends_on:
-      - mongodb
+    environment:
+      - NODE_ENV=production
+      - MONGODB_URI=${MONGODB_URI}
+    restart: unless-stopped
+    networks:
+      - app-network
     volumes:
       - .:/app
       - /app/node_modules
     command: npm run dev
 
-  mongodb:
-    image: mongo:6
-    container_name: mongo
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongo-data:/data/db
-
-volumes:
-  mongo-data:
+networks:
+  app-network:
+    driver: bridge
