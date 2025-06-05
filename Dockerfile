@@ -6,23 +6,10 @@ COPY package*.json ./
 
 RUN npm install
 
-COPY . .
-
-RUN npm run build
-
-FROM node:18-alpine AS runner
-
-WORKDIR /app
-
-COPY --from=builder /app/package*.json ./
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/public ./public
-COPY --from=builder /app/node_modules ./node_modules
-
-# Set environment variables
-ENV NODE_ENV=production
-ENV PORT=3000
+# We don't copy the rest of the files here because they'll be mounted as a volume
+# This allows for hot-reloading during development
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+# Use development command instead of production
+CMD ["npm", "run", "dev"]

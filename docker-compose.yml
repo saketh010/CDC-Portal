@@ -10,16 +10,31 @@ services:
     env_file:
       - .env.local
     environment:
-      - NODE_ENV=production
-      - MONGODB_URI=${MONGODB_URI}
+      - NODE_ENV=development
+      - MONGODB_URI=mongodb://mongodb:27017/cdc-portal
     restart: unless-stopped
     networks:
       - app-network
     volumes:
       - .:/app
       - /app/node_modules
+      - /app/.next
     command: npm run dev
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - app-network
 
 networks:
   app-network:
     driver: bridge
+
+volumes:
+  mongodb_data:
