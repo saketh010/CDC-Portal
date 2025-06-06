@@ -1,4 +1,4 @@
-# 🎓 CDC Portal - Campus Recruitment Platform
+# 🎓 Career Development Cell - Job Application Portal
 
 A modern, full-stack job application portal built with Next.js, designed to streamline the campus recruitment process. This platform connects students with opportunities and helps administrators manage the recruitment workflow efficiently.
 
@@ -14,32 +14,23 @@ A modern, full-stack job application portal built with Next.js, designed to stre
   - Browse through available job listings
   - Filter jobs by status (Open/All)
   - View detailed job descriptions and requirements
-  - Real-time job status updates
+  - Job status updates
 
 - **Application Management**
-  - Track application status
   - View application history
-  - Receive email notifications for application updates
+  - Receive email notifications for applications
   - Easy application submission process
 
 - **Profile Management**
   - Create and update personal profile
   - Upload and manage documents
   - View application history
-  - Track selection status
 
 ### For Administrators
 - **Job Management**
   - Create and publish new job listings
   - Toggle job status (Open/Closed)
   - Manage application deadlines
-  - View application statistics
-
-- **Application Processing**
-  - Review submitted applications
-  - Process selections
-  - Send notifications to applicants
-  - Generate reports
 
 ### Technical Features
 - **Authentication & Authorization**
@@ -50,8 +41,7 @@ A modern, full-stack job application portal built with Next.js, designed to stre
 
 - **Email Notifications**
   - Application confirmation emails
-  - Status update notifications
-  - Automated reminders
+  - Password change / Forgot password OTP verification
   - Custom email templates
 
 - **Responsive Design**
@@ -167,20 +157,11 @@ We welcome contributions! Please follow these steps:
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
-
-- Thanks to all contributors who have helped shape this project
-- Inspired by modern job portals and recruitment platforms
-- Built with best practices in mind
-
 ## 📞 Support
 
 For support, please:
 - Open an issue in the GitHub repository
-- Contact the development team
-- Check the documentation for common issues
+- Contact at sakethkanuri10@gmail.com
 
 ---
-
-Made with ❤️ by the CDC Portal Team
 
