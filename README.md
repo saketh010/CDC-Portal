@@ -1,184 +1,186 @@
----
+# 🎓 CDC Portal - Campus Recruitment Platform
 
-# 🚀 Dockerized Next.js Job Application Portal
+A modern, full-stack job application portal built with Next.js, designed to streamline the campus recruitment process. This platform connects students with opportunities and helps administrators manage the recruitment workflow efficiently.
 
-Welcome to the **Dockerized Next.js Job Application Portal**! This is a modern job application platform where users can view job details, apply for jobs, and receive email confirmations. The app is Dockerized for easy deployment and scalability. Let's get started! 🎉
+![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![License](https://img.shields.io/badge/license-MIT-green.svg)
+![Next.js](https://img.shields.io/badge/Next.js-black?style=flat&logo=next.js&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=flat&logo=mongodb&logoColor=white)
 
----
+## ✨ Features
 
-## 📝 Features
+### For Students
+- **Job Discovery**
+  - Browse through available job listings
+  - Filter jobs by status (Open/All)
+  - View detailed job descriptions and requirements
+  - Real-time job status updates
 
-- **Job Application Portal**: View and apply for jobs with ease. 💼
-- **Email Notifications**: Receive a confirmation email when you apply for a job. 📧
-- **Dockerized Setup**: Simple and consistent deployment using Docker and Docker Compose. 🐳
-- **Database Integration**: MongoDB service for storing job and user data. 🗄️
+- **Application Management**
+  - Track application status
+  - View application history
+  - Receive email notifications for application updates
+  - Easy application submission process
 
----
+- **Profile Management**
+  - Create and update personal profile
+  - Upload and manage documents
+  - View application history
+  - Track selection status
 
-## 🔧 Prerequisites
+### For Administrators
+- **Job Management**
+  - Create and publish new job listings
+  - Toggle job status (Open/Closed)
+  - Manage application deadlines
+  - View application statistics
 
-Before running the project locally, make sure you have the following installed:
+- **Application Processing**
+  - Review submitted applications
+  - Process selections
+  - Send notifications to applicants
+  - Generate reports
 
-- **Docker**: Get it [here](https://www.docker.com/get-started).
-- **Docker Compose**: Install it [here](https://docs.docker.com/compose/install/).
+### Technical Features
+- **Authentication & Authorization**
+  - Secure user authentication
+  - Role-based access control
+  - Password recovery system
+  - Session management
 
----
+- **Email Notifications**
+  - Application confirmation emails
+  - Status update notifications
+  - Automated reminders
+  - Custom email templates
 
-## 🚀 How to Run the Project Locally
+- **Responsive Design**
+  - Mobile-first approach
+  - Cross-browser compatibility
+  - Modern UI/UX
+  - Accessible interface
 
-Follow these simple steps to get the app up and running on your local machine:
+## 🚀 Getting Started
 
-### 1. Clone the Repository
+### Prerequisites
+- Node.js (v14 or higher)
+- MongoDB
+- Docker and Docker Compose (for containerized deployment)
+- SMTP server access (for email notifications)
 
+### Installation
+
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/your-username/CDC-Portal.git
+   cd CDC-Portal
+   ```
+
+2. **Environment Setup**
+   Create a `.env` file in the root directory:
+   ```env
+   PORT=3000
+   MONGODB_URI=mongodb://localhost:27017/cdc_portal
+   EMAIL_SERVICE=your_email_service
+   EMAIL_USER=your_email_address
+   EMAIL_PASS=your_email_password
+   JWT_SECRET=your_jwt_secret
+   ```
+
+3. **Install Dependencies**
+   ```bash
+   npm install
+   ```
+
+4. **Development Mode**
+   ```bash
+   npm run dev
+   ```
+
+5. **Production Build**
+   ```bash
+   npm run build
+   npm start
+   ```
+
+### Docker Deployment
 ```bash
-git clone https://github.com/Neem-Sheth/CDC-Portal.git
-cd CDC-Portal
-```
-
-### 2. Add a `.env` File
-
-Create a `.env` file in the root directory and configure the required environment variables:
-
-```bash
-PORT=3000
-MONGODB_URI=mongodb://mongo:27017/your_database_name
-EMAIL_SERVICE=your_email_service
-EMAIL_USER=your_email_address
-EMAIL_PASS=your_email_password
-```
-
-💡 **Note**: Replace placeholders with actual values.
-
-### 3. Build and Run the Docker Container
-
-Run the following command to build and start the Docker containers:
-
-```bash
+# Build and run with Docker Compose
 docker-compose up --build
 ```
 
-This will:
+## 🛠️ Technology Stack
 
-- Build the application Docker image. 🔨
-- Start the application and MongoDB services. 🚀
+- **Frontend**
+  - Next.js
+  - React
+  - Tailwind CSS
+  - DaisyUI
 
-### 4. Access the Application
+- **Backend**
+  - Node.js
+  - Express.js
+  - MongoDB
+  - Mongoose
 
-Once everything is up and running, open your browser and go to:
-
-🌍 **[http://localhost:3000](http://localhost:3000)**
-
----
+- **DevOps**
+  - Docker
+  - Docker Compose
+  - GitHub Actions
 
 ## 📁 Project Structure
-
-Here’s a quick overview of the project structure:
-
 ```
-.
-├── Dockerfile             # Docker configuration for the app
-├── docker-compose.yml     # Multi-service Docker configuration
-├── package.json           # Dependencies and scripts
-├── pages/                 # Next.js pages
-├── api/                   # Backend API routes
-├── components/            # Reusable React components
-├── public/                # Static assets
-└── README.md              # Project documentation
+CDC-Portal/
+├── components/          # Reusable React components
+│   ├── Auth/           # Authentication components
+│   ├── Layout/         # Layout components
+│   ├── Profile/        # Profile management
+│   ├── SEO/            # SEO optimization
+│   └── UI/             # UI components
+├── pages/              # Next.js pages
+│   ├── api/            # API routes
+│   ├── admin/          # Admin dashboard
+│   └── selections/     # Selection management
+├── public/             # Static assets
+├── styles/             # Global styles
+└── utils/              # Utility functions
 ```
-
----
-
-## 🎬 Available Scripts
-
-Here are the commands to run inside the project directory:
-
-- `npm run dev` ➡️ Start the development server. ⚡
-- `npm run build` ➡️ Build the production-ready app. 🚀
-- `npm run start` ➡️ Start the production server. 💻
-
----
-
-## ✉️ Using Nodemailer
-
-This project integrates **Nodemailer** to send job application confirmation emails. When a user applies for a job, they will receive an email containing the job details and a confirmation message. 🎉
-
-### 🛠️ Email Configuration
-
-You’ll need to configure the following environment variables in your `.env` file:
-
-```bash
-EMAIL_SERVICE: e.g., gmail
-EMAIL_USER: Your email address
-EMAIL_PASS: App password or email password (securely stored)
-```
-
----
-
-## 🐳 Docker Commands
-
-Here are some common Docker commands for working with the app:
-
-- **Build Docker Image**: 
-
-  ```bash
-  docker build -t your_project_name .
-  ```
-
-- **Run the Docker Container**:
-
-  ```bash
-  docker run -p 3000:3000 your_project_name
-  ```
-
-- **Stop the Container**:
-
-  ```bash
-  docker-compose down
-  ```
-
----
-
-## 🌐 Deployment
-
-To deploy the Dockerized application to the cloud:
-
-1. Push the Docker image to a registry (e.g., Docker Hub, AWS ECR).
-2. Deploy the image to your preferred cloud platform (e.g., AWS, Azure, Google Cloud, Heroku).
-
----
 
 ## 🤝 Contributing
 
-We welcome contributions! Here’s how you can contribute to this project:
+We welcome contributions! Please follow these steps:
 
-1. Fork this repository.
-2. Create a new branch for your feature/bugfix: 
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-   ```bash
-   git checkout -b feature-name
-   ```
-
-3. Commit your changes: 
-
-   ```bash
-   git commit -m "Add feature"
-   ```
-
-4. Push to your branch:
-
-   ```bash
-   git push origin feature-name
-   ```
-
-5. Submit a pull request.
-
----
+### Development Guidelines
+- Follow the existing code style
+- Write meaningful commit messages
+- Add tests for new features
+- Update documentation as needed
+- Ensure all tests pass before submitting PR
 
 ## 📝 License
 
-This project is licensed under the **MIT License**. 
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- Thanks to all contributors who have helped shape this project
+- Inspired by modern job portals and recruitment platforms
+- Built with best practices in mind
+
+## 📞 Support
+
+For support, please:
+- Open an issue in the GitHub repository
+- Contact the development team
+- Check the documentation for common issues
 
 ---
 
-Thanks for checking out the project! Feel free to contribute or just explore! 🎉
+Made with ❤️ by the CDC Portal Team
 
